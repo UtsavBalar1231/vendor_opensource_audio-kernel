@@ -1,4 +1,4 @@
-/* Copyright (c) 2012-2020, The Linux Foundation. All rights reserved.
+W/* Copyright (c) 2012-2020, The Linux Foundation. All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License version 2 and
@@ -331,6 +331,11 @@ static void av_dev_drift_afe_cb_handler(uint32_t opcode, uint32_t *payload,
 	switch (opcode) {
 	case AFE_PORT_CMDRSP_GET_PARAM_V2:
 		expected_size += sizeof(struct param_hdr_v1);
+		if (payload_size < expected_size) {
+			pr_err("%s: Error: received size %d, expected size %zu\n",
+			       __func__, payload_size, expected_size);
+			return;
+		}
 		/* Repack response to add IID */
 		this_afe.av_dev_drift_resp.status = payload[0];
 		this_afe.av_dev_drift_resp.pdata.module_id = payload[1];
@@ -342,6 +347,11 @@ static void av_dev_drift_afe_cb_handler(uint32_t opcode, uint32_t *payload,
 		break;
 	case AFE_PORT_CMDRSP_GET_PARAM_V3:
 		expected_size += sizeof(struct param_hdr_v3);
+		if (payload_size < expected_size) {
+			pr_err("%s: Error: received size %d, expected size %zu\n",
+			       __func__, payload_size, expected_size);
+			return;
+		}
 		memcpy(&this_afe.av_dev_drift_resp, payload,
 				sizeof(this_afe.av_dev_drift_resp));
 		break;
