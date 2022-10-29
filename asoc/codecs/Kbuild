@@ -81,8 +81,13 @@ ifeq ($(TARGET_PRODUCT), psyche)
         CDEFINES += -DCONFIG_TARGET_PRODUCT_PSYCHE
 endif
 
+
 ifeq ($(TARGET_PRODUCT), munch)
         CDEFINES += -DCONFIG_TARGET_PRODUCT_MUNCH
+endif
+
+ifeq ($(TARGET_PRODUCT), dagu)
+        CDEFINES += -DCONFIG_TARGET_PRODUCT_DAGU
 endif
 
 # As per target team, build is done as follows:
@@ -242,6 +247,8 @@ ifeq ($(KERNEL_BUILD), 1)
 ifeq ($(TARGET_PRODUCT), $(filter $(TARGET_PRODUCT), enuma))
 	obj-y	+= cs35l41_k81/
 else ifeq ($(TARGET_PRODUCT), $(filter $(TARGET_PRODUCT), elish))
+	obj-y	+= cs35l41_k81/
+else ifeq ($(TARGET_PRODUCT), $(filter $(TARGET_PRODUCT), dagu))
 	obj-y	+= cs35l41_k81/
 else ifeq ($(TARGET_PRODUCT), $(filter $(TARGET_PRODUCT), munch))
 	obj-y	+= tfa9874/

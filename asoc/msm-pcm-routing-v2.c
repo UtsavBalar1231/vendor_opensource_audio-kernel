@@ -30722,9 +30722,6 @@ static int msm_routing_probe(struct snd_soc_component *component)
 	snd_soc_add_component_controls(component, pll_clk_drift_controls,
 				      ARRAY_SIZE(pll_clk_drift_controls));
 
-	snd_soc_add_component_controls(component, pll_clk_drift_controls,
-				      ARRAY_SIZE(pll_clk_drift_controls));
-
 	return 0;
 }
 

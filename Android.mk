@@ -26,6 +26,8 @@ ifeq ($(TARGET_PRODUCT), $(filter $(TARGET_PRODUCT), enuma))
 include $(MY_LOCAL_PATH)/asoc/codecs/cs35l41_k81/Android.mk
 else ifeq ($(TARGET_PRODUCT), $(filter $(TARGET_PRODUCT), elish))
 include $(MY_LOCAL_PATH)/asoc/codecs/cs35l41_k81/Android.mk
+else ifeq ($(TARGET_PRODUCT), $(filter $(TARGET_PRODUCT), dagu))
+include $(MY_LOCAL_PATH)/asoc/codecs/cs35l41_k81/Android.mk
 else
 include $(MY_LOCAL_PATH)/asoc/codecs/cs35l41/Android.mk
 endif
@@ -71,7 +73,7 @@ $(shell rm -rf $(PRODUCT_OUT)/obj/vendor/qcom/opensource/audio-kernel/asoc/codec
 include $(MY_LOCAL_PATH)/asoc/codecs/bolero/Android.mk
 $(shell rm -rf $(PRODUCT_OUT)/obj/vendor/qcom/opensource/audio-kernel/asoc/codecs/wcd938x/Module.symvers)
 include $(MY_LOCAL_PATH)/asoc/codecs/wcd938x/Android.mk
-ifeq ($(TARGET_PRODUCT), $(filter $(TARGET_PRODUCT), munch))
+ifeq ($(TARGET_PRODUCT), $(filter $(TARGET_PRODUCT), poussin munch))
 $(warning compile 9874 $(TARGET_PRODUCT))
 $(shell rm -rf $(PRODUCT_OUT)/obj/vendor/qcom/opensource/audio-kernel/asoc/codecs/tfa9874/Module.symvers)
 include $(MY_LOCAL_PATH)/asoc/codecs/tfa9874/Android.mk
