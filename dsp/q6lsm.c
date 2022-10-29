@@ -1218,7 +1218,7 @@ int q6lsm_set_afe_data_format(uint64_t fe_id, uint16_t afe_data_format)
 {
 	int n = 0;
 
-#if defined(CONFIG_TARGET_PRODUCT_PSYCHE) || defined(CONFIG_TARGET_PRODUCT_DAGU)
+#if defined(CONFIG_TARGET_PRODUCT_PSYCHE)
 	int free_session = LSM_INVALID_SESSION_ID;
 #endif
 
@@ -1229,7 +1229,7 @@ int q6lsm_set_afe_data_format(uint64_t fe_id, uint16_t afe_data_format)
 		 afe_data_format ? "unprocessed" : "processed");
 
 	for (n = LSM_MIN_SESSION_ID; n <= LSM_MAX_SESSION_ID; n++) {
-#if !defined(CONFIG_TARGET_PRODUCT_PSYCHE) && !defined(CONFIG_TARGET_PRODUCT_DAGU)
+#ifndef CONFIG_TARGET_PRODUCT_PSYCHE
 		if (0 == lsm_client_afe_data[n].fe_id) {
 			lsm_client_afe_data[n].fe_id = fe_id;
 #else
@@ -1249,7 +1249,7 @@ int q6lsm_set_afe_data_format(uint64_t fe_id, uint16_t afe_data_format)
 		}
 	}
 
-#if defined(CONFIG_TARGET_PRODUCT_PSYCHE) || defined(CONFIG_TARGET_PRODUCT_DAGU)
+#if defined(CONFIG_TARGET_PRODUCT_PSYCHE)
 	/*
 	 * When no matching session is found, allocate
 	 * a new one if a free session is available.
