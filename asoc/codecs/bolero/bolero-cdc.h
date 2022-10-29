@@ -56,6 +56,8 @@ enum {
 	BOLERO_MACRO_EVT_SSR_GFMUX_UP,
 	BOLERO_MACRO_EVT_PRE_SSR_UP,
 	BOLERO_MACRO_EVT_RX_PA_GAIN_UPDATE,
+	BOLERO_MACRO_EVT_HPHL_HD2_ENABLE, /* Enable HD2 cfg for HPHL */
+	BOLERO_MACRO_EVT_HPHR_HD2_ENABLE, /* Enable HD2 cfg for HPHR */
 };
 
 enum {
@@ -125,7 +127,12 @@ int bolero_tx_mclk_enable(struct snd_soc_component *c, bool enable);
 int bolero_get_version(struct device *dev);
 int bolero_dmic_clk_enable(struct snd_soc_component *component,
 			   u32 dmic, u32 tx_mode, bool enable);
+void bolero_tx_macro_mute_hs(void);
 #else
+
+static inline void bolero_tx_macro_mute_hs(void)
+{
+}
 static inline int bolero_register_res_clk(struct device *dev, rsc_clk_cb_t cb)
 {
 	return 0;
